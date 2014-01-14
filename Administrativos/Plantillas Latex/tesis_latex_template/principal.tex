@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author:  Pablo Alvarado
+%
+% Escuela de Ingenier铆a Electr贸nica
+% Instituto Tecnol贸gico de Costa Rica
+%
+% Tesis de Licenciatura
+% 
+% Phone:   +506 550 2106
+% Fax:     +506 591 6629
+% email:   palvarado@ietec.org
+%
+% $Id: main.tex 1513 2010-08-15 01:25:24Z palvarado $
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \documentclass is book
+\documentclass[12pt,twoside,letterpaper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{ifthen}                     % provide if-then-else operators
+
+% --------------------------------------------------------------------------
+% Global variables required in document formatting
+% --------------------------------------------------------------------------
+%
+% BOOK MODE
+%
+\newboolean{bookmode}                  % boolean used to control book format
+% Ensure that only one of the next two lines is active:
+\setboolean{bookmode}{true}           % turn book mode on
+%\setboolean{bookmode}{false}           % turn book mode off
+
+%
+% DRAFT MODE
+%
+\newboolean{draftmode}                  % boolean used to control draft-mode
+% Ensure that only one of the next two lines is active:
+\setboolean{draftmode}{true}            % turn draft mode on
+%\setboolean{draftmode}{false}           % turn draft mode off
+% --------------------------------------------------------------------------
+%
+% GENERAL AUTHOR, TITLE AND KEYWORDS
+%
+% Nombre del Estudiante
+\newcommand{\scriptAuthor}{Nombre Apellido}
+
+% T铆tulo de la tesis
+\newcommand{\scriptTitle}{Dise帽o de ...} 
+
+% Keywords
+\newcommand{\scriptKeywords}{palabras, clave, ...}
+
+% Descripci贸n de la editorial
+\newcommand{\boxeditorial}{%
+}
+
+% Para el PDF (cambiar si se desea otras cosas a lo indicado arriba
+\newcommand{\pdfAuthor}{\scriptAuthor}
+\newcommand{\pdfTitle}{\scriptTitle} 
+\newcommand{\pdfKeywords}{\scriptKeywords}
+
+% include all packages and define all required general macros
+\input{macros}
+
+% allow equations to be splitted (breaked) into several pages
+\allowdisplaybreaks[3]
+
+\begin{document}
+
+  \pagenumbering{alph}      %Numeración de paginas
+  % fix some terms not activated due to the bug of hyperref with spanish.
+  \renewcommand{\tablename}{Tabla}
+  \renewcommand{\listtablename}{\'Indice de tablas}
+  \renewcommand{\examplesolution}{Soluci贸n}
+  \pagestyle{empty}      %Estilo de paginas
+
+  \include{portada}                  % Titlepage
+  \include{autenticidad}           % Titlepage
+  
+   %----------------------------------------------------------------------------
+  \frontmatter
+  %----------------------------------------------------------------------------
+  \pagestyle{fancy}
+
+  \pdfbookmark[1]{Indice General}{Indice General}
+
+  \parskip0ex                           % space between paragraphs
+
+  \tableofcontents                                      % Table of contents
+  
+  %\ifdraft{%
+  % todo's                                              % TODOs
+  %\listoftodo
+  %}{%
+  %}
+  \parskip1.3ex                           % space between paragraphs
+
+  %----------------------------------------------------------------------------
+  \mainmatter
+  %----------------------------------------------------------------------------
+  \include{entorno}                  % Titlepage
+  
+    %----------------------------------------------------------------------------
+  % literature
+  \bibliographystyle{sty/plainurl} % for english documents
+  \bibliography{literatura}
+  %----------------------------------------------------------------------------
+
+  %----------------------------------------------------------------------------
+  \appendix
+  %----------------------------------------------------------------------------
+
+  %----------------------------------------------------------------------------
+  \backmatter
+  %----------------------------------------------------------------------------
+
+  \printindex                % insert index into document. Don't forget to call
+
+\end{document}
